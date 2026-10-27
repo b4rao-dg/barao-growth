@@ -4,235 +4,629 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Barão Growth</title>
-<meta name="description" content="Meta Ads for local businesses: turning Instagram attention into WhatsApp conversations and real sales.">
+<meta name="description" content="Ads that turn into sales on WhatsApp. Meta Ads, WhatsApp sales funnels and automation for local businesses.">
+<meta property="og:title" content="Barão Growth: ads that turn into sales on WhatsApp">
+<meta property="og:description" content="Meta Ads, WhatsApp sales funnels and automation for local businesses.">
+<meta property="og:image" content="https://b4rao-dg.github.io/barao-growth/assets/og.jpg">
+<meta name="theme-color" content="#0d1420">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fbfaf7;
-    --surface: #ffffff;
-    --text: #17171a;
-    --muted: #5d5d66;
-    --line: #e7e4dd;
-    --accent: #e8590c;
-    --accent-soft: #fff1e8;
-    --wa: #1f9d55;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #121214;
-      --surface: #1b1b1f;
-      --text: #f2f1ee;
-      --muted: #a7a6ad;
-      --line: #2d2d33;
-      --accent: #ff7a2e;
-      --accent-soft: #2a1d15;
-      --wa: #2fbf6c;
-    }
+    --bg: #0d1420;
+    --bg-2: #111a2a;
+    --card: #152036;
+    --card-2: #1a2742;
+    --line: #24324d;
+    --text: #eef3f7;
+    --muted: #93a1b8;
+    --dim: #63728c;
+    --red: #e11d2e;
+    --red-2: #b81d2d;
+    --red-3: #861e2b;
+    --blue: #96c1ee;
+    --blue-2: #5f8fd0;
+    --green: #25d366;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    overflow-x: hidden;
   }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
-  section { padding: 72px 0; border-top: 1px solid var(--line); }
-  h1, h2, h3 { line-height: 1.15; margin: 0 0 16px; }
-  h1 { font-size: clamp(2.1rem, 6vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; }
-  h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); font-weight: 800; letter-spacing: -0.01em; }
-  h3 { font-size: 1.1rem; font-weight: 600; }
+  /* dotted grid like the brand banner */
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: -2;
+    background-image: radial-gradient(rgba(150,193,238,.09) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+  body::after {
+    content: "";
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(700px 400px at 85% -10%, rgba(225,29,46,.13), transparent 70%),
+      radial-gradient(600px 400px at -10% 30%, rgba(95,143,208,.12), transparent 70%);
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+  section { padding: 96px 0; position: relative; }
+  h1, h2, h3 { margin: 0 0 16px; line-height: 1.1; letter-spacing: -0.02em; }
+  h1 { font-size: clamp(2.4rem, 6.2vw, 4.2rem); font-weight: 800; }
+  h2 { font-size: clamp(1.8rem, 4.2vw, 2.8rem); font-weight: 800; }
+  h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
   p { margin: 0 0 16px; color: var(--muted); }
-  .eyebrow { color: var(--accent); font-weight: 600; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 12px; }
-
-  header.top { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
-  .logo { font-weight: 800; font-size: 1.1rem; }
-  .logo span { color: var(--accent); }
-
-  .btn {
-    display: inline-block; text-decoration: none; font-weight: 600;
-    padding: 14px 24px; border-radius: 10px; transition: transform .15s ease;
+  .mono { font-family: var(--mono); }
+  .tag {
+    font-family: var(--mono); font-size: .78rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 14px; display: block;
   }
-  .btn:hover { transform: translateY(-2px); }
-  .btn-wa { background: var(--wa); color: #fff; }
-  .btn-ghost { border: 1px solid var(--line); color: var(--text); }
-  .btn-sm { padding: 9px 16px; font-size: .9rem; }
+  .blue { color: var(--blue); }
+  .red { color: var(--red); }
+  .section-head { max-width: 640px; margin-bottom: 48px; }
 
-  .hero { padding: 64px 0 80px; border-top: none; }
-  .hero p.lead { font-size: 1.2rem; max-width: 620px; }
-  .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
-  .highlight { background: linear-gradient(transparent 62%, var(--accent-soft) 62%); }
+  /* buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px; border-radius: 12px; font-weight: 600; text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: var(--red); color: #fff; box-shadow: 0 8px 30px -8px rgba(225,29,46,.6); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px -8px rgba(225,29,46,.75); }
+  .btn-ghost { border: 1px solid var(--line); color: var(--text); background: rgba(21,32,54,.5); }
+  .btn-ghost:hover { border-color: var(--blue-2); transform: translateY(-2px); }
 
-  .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
-  .step { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; position: relative; }
-  .step .num { width: 36px; height: 36px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 800; display: grid; place-items: center; margin-bottom: 14px; }
-  .step p { margin: 0; }
+  /* nav */
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    background: rgba(13,20,32,.72); border-bottom: 1px solid transparent;
+    transition: border-color .3s ease;
+  }
+  nav.top.scrolled { border-bottom-color: var(--line); }
+  nav.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; text-decoration: none; }
+  .brand img { width: 34px; height: 34px; border-radius: 8px; }
+  .brand span { color: var(--red); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-size: .92rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links .btn { padding: 9px 16px; font-size: .9rem; color: #fff; }
 
-  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 32px; }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
-  .card p { margin: 0; }
+  /* hero */
+  .hero { padding: 72px 0 96px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+  .terminal { font-family: var(--mono); color: var(--red); font-size: .95rem; margin-bottom: 20px; min-height: 1.5em; }
+  .terminal .cursor { display: inline-block; width: 9px; height: 1.05em; background: var(--red); vertical-align: -2px; margin-left: 2px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hero .lead { font-size: 1.18rem; max-width: 560px; }
+  .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 32px 0 40px; }
+  .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 560px; }
+  .hero-stat { border: 1px solid var(--line); background: rgba(21,32,54,.6); border-radius: 14px; padding: 14px 16px; }
+  .hero-stat b { display: block; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; }
+  .hero-stat small { font-family: var(--mono); font-size: .72rem; color: var(--muted); }
 
-  .result .big { font-size: 2.2rem; font-weight: 800; color: var(--accent); line-height: 1.1; margin-bottom: 4px; }
-  .result .label { font-weight: 600; color: var(--text); margin-bottom: 10px; }
-  .note { font-size: .85rem; margin-top: 20px; }
+  /* phone with animated WhatsApp chat */
+  .phone {
+    width: 100%; max-width: 340px; margin: 0 auto; aspect-ratio: 9 / 17.5;
+    border-radius: 40px; padding: 12px; background: #0a0f18;
+    border: 1px solid #2a3957;
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,.8), 0 0 0 6px rgba(95,143,208,.06), 0 0 80px -20px rgba(95,143,208,.35);
+    position: relative; animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float { 50% { transform: translateY(-10px); } }
+  .screen { height: 100%; border-radius: 30px; overflow: hidden; background: #0b141a; display: flex; flex-direction: column; }
+  .chat-head { display: flex; align-items: center; gap: 10px; padding: 14px 14px 12px; background: #1f2c34; }
+  .chat-head img { width: 34px; height: 34px; border-radius: 50%; }
+  .chat-head b { font-size: .88rem; display: block; line-height: 1.2; }
+  .chat-head small { font-size: .7rem; color: #8fa3ad; }
+  .chat-body {
+    flex: 1; padding: 14px 12px; display: flex; flex-direction: column; gap: 8px; justify-content: flex-end; overflow: hidden;
+    background-image: radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px); background-size: 16px 16px;
+  }
+  .msg {
+    max-width: 82%; padding: 8px 11px 6px; border-radius: 10px; font-size: .8rem; line-height: 1.4;
+    opacity: 0; transform: translateY(10px) scale(.97); transition: opacity .35s ease, transform .35s ease;
+  }
+  .msg.show { opacity: 1; transform: none; }
+  #chat [data-step] { display: none; }
+  .msg time { display: block; text-align: right; font-size: .62rem; color: rgba(255,255,255,.45); margin-top: 2px; }
+  .msg.in { background: #1f2c34; align-self: flex-start; border-top-left-radius: 2px; }
+  .msg.out { background: #005c4b; align-self: flex-end; border-top-right-radius: 2px; }
+  .ad-card { background: #1f2c34; border-radius: 10px; overflow: hidden; align-self: flex-start; max-width: 82%; }
+  .ad-card .ad-img { height: 74px; background: linear-gradient(135deg, var(--red-3), var(--red) 60%, #ff6b5b); display: grid; place-items: center; font-weight: 800; font-size: .95rem; color: #fff; }
+  .ad-card .ad-txt { padding: 7px 10px 8px; font-size: .7rem; color: #aebac1; }
+  .ad-card .ad-txt b { color: #e9edef; display: block; font-size: .76rem; }
+  .typing { align-self: flex-start; background: #1f2c34; border-radius: 10px; padding: 10px 12px; display: flex; gap: 4px; opacity: 0; transition: opacity .25s; }
+  .typing.show { opacity: 1; }
+  .typing i { width: 6px; height: 6px; border-radius: 50%; background: #8fa3ad; animation: dot 1.2s infinite; }
+  .typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+  @keyframes dot { 0%, 60%, 100% { transform: none; opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+  .closed {
+    align-self: center; font-family: var(--mono); font-size: .72rem; color: var(--green);
+    border: 1px solid rgba(37,211,102,.4); background: rgba(37,211,102,.08); border-radius: 999px; padding: 5px 12px;
+    opacity: 0; transform: scale(.9); transition: opacity .35s, transform .35s;
+  }
+  .closed.show { opacity: 1; transform: none; }
+  .chat-input { margin: 8px 10px 12px; height: 36px; border-radius: 18px; background: #1f2c34; display: flex; align-items: center; padding: 0 14px; font-size: .74rem; color: #8fa3ad; }
 
-  .about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: start; }
-  .facts { list-style: none; padding: 0; margin: 0; }
-  .facts li { padding: 12px 0; border-bottom: 1px solid var(--line); color: var(--muted); }
-  .facts li strong { color: var(--text); }
+  /* funnel */
+  .funnel { display: grid; grid-template-columns: 1fr 60px 1fr 60px 1fr 60px 1fr; align-items: center; }
+  .node {
+    background: linear-gradient(180deg, var(--card-2), var(--card));
+    border: 1px solid var(--line); border-radius: 16px; padding: 20px;
+    transition: transform .3s ease, border-color .3s ease;
+  }
+  .node:hover { transform: translateY(-4px); border-color: var(--blue-2); }
+  .node .step { font-family: var(--mono); font-size: .72rem; color: var(--dim); letter-spacing: .1em; }
+  .node h3 { margin: 8px 0 6px; font-size: 1.3rem; }
+  .node .meta { font-family: var(--mono); font-size: .75rem; color: var(--red); }
+  .node p { font-size: .88rem; margin: 10px 0 0; }
+  .node.final { border-color: rgba(225,29,46,.6); box-shadow: 0 0 40px -10px rgba(225,29,46,.45); }
+  .link { position: relative; height: 2px; margin: 0 6px;
+    background: repeating-linear-gradient(90deg, rgba(225,29,46,.55) 0 6px, transparent 6px 12px);
+    background-size: 24px 2px; animation: dash 1s linear infinite; }
+  @keyframes dash { to { background-position: 24px 0; } }
+  .link::after {
+    content: ""; position: absolute; top: 50%; left: 0; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--red); box-shadow: 0 0 12px var(--red); transform: translate(-50%, -50%);
+    animation: travel 2.4s ease-in-out infinite;
+  }
+  .link:nth-of-type(4)::after { animation-delay: .8s; }
+  .link:nth-of-type(6)::after { animation-delay: 1.6s; }
+  @keyframes travel { 0% { left: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
 
-  .cta { text-align: center; }
-  .cta p { max-width: 560px; margin: 0 auto 28px; }
+  /* results */
+  .results { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .result {
+    background: linear-gradient(180deg, var(--card-2), var(--card)); border: 1px solid var(--line);
+    border-radius: 18px; padding: 24px; position: relative; overflow: hidden;
+  }
+  .result::before { content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 100%; background: linear-gradient(90deg, var(--red-3), var(--red)); transform: scaleX(0); transform-origin: left; transition: transform 1s ease .2s; }
+  .result.in::before { transform: scaleX(1); }
+  .result .num { font-size: clamp(2rem, 3.4vw, 2.6rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px; }
+  .result .label { font-family: var(--mono); font-size: .74rem; color: var(--blue); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 14px; }
+  .result p { font-size: .88rem; margin: 0; }
+  .note { font-family: var(--mono); font-size: .74rem; color: var(--dim); margin-top: 20px; }
 
-  footer { border-top: 1px solid var(--line); padding: 28px 0; font-size: .85rem; color: var(--muted); }
-  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  footer a { color: var(--muted); }
+  /* services */
+  .services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .service {
+    background: linear-gradient(180deg, var(--card-2), var(--card)); border: 1px solid var(--line);
+    border-radius: 18px; padding: 28px; position: relative; overflow: hidden;
+    transition: transform .3s ease, border-color .3s ease;
+  }
+  .service:hover { transform: translateY(-4px); border-color: var(--blue-2); }
+  .service .snum { font-family: var(--mono); font-size: .72rem; color: var(--dim); letter-spacing: .1em; }
+  .service h3 { margin: 10px 0 10px; font-size: 1.3rem; }
+  .service p { margin: 0; font-size: .95rem; }
+  .service .pill { display: inline-block; margin-top: 18px; font-family: var(--mono); font-size: .72rem; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+  .service.featured { border-color: rgba(150,193,238,.45); background: linear-gradient(160deg, rgba(95,143,208,.22), var(--card) 60%); }
+  .service.featured .pill { border-color: var(--blue); color: var(--blue); }
+  .service .icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: rgba(225,29,46,.12); color: var(--red); margin-bottom: 16px; }
+  .service.featured .icon { background: rgba(150,193,238,.15); color: var(--blue); }
+  .service .icon svg { width: 22px; height: 22px; }
 
-  @media (max-width: 760px) {
-    section { padding: 56px 0; }
-    .flow, .grid-2, .about { grid-template-columns: 1fr; }
-    .about { gap: 24px; }
+  /* weekly report */
+  .report-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
+  .checks { list-style: none; padding: 0; margin: 24px 0 0; }
+  .checks li { display: flex; gap: 12px; padding: 10px 0; color: var(--muted); }
+  .checks li::before { content: "→"; color: var(--red); font-family: var(--mono); }
+  .report { background: linear-gradient(180deg, var(--card-2), var(--card)); border: 1px solid var(--line); border-radius: 20px; padding: 26px; }
+  .report-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 22px; }
+  .report-top b { font-size: 1.05rem; }
+  .report-top small { font-family: var(--mono); font-size: .72rem; color: var(--dim); }
+  .bars { display: flex; align-items: flex-end; gap: 14px; height: 170px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+  .bar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; justify-content: flex-end; }
+  .bar i { display: block; width: 100%; border-radius: 8px 8px 3px 3px; background: linear-gradient(180deg, var(--blue-2), rgba(95,143,208,.35)); height: 0; transition: height 1.1s cubic-bezier(.2,.8,.2,1); }
+  .bar.hot i { background: linear-gradient(180deg, var(--red), var(--red-3)); }
+  .bar-labels { display: flex; gap: 14px; margin-top: 8px; }
+  .bar-labels span { flex: 1; text-align: center; font-family: var(--mono); font-size: .7rem; color: var(--dim); }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+  .kpi { background: rgba(13,20,32,.6); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+  .kpi small { font-family: var(--mono); font-size: .68rem; color: var(--dim); display: block; }
+  .kpi b { font-size: 1.15rem; }
+  .report-foot { font-family: var(--mono); font-size: .7rem; color: var(--dim); margin-top: 14px; }
+
+  /* about */
+  .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: center; }
+  .portrait { position: relative; max-width: 380px; }
+  .portrait img { width: 100%; display: block; border-radius: 24px; border: 1px solid var(--line); }
+  .portrait::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border-radius: 24px; border: 1px solid rgba(225,29,46,.45); z-index: -1; }
+  .portrait .badge {
+    position: absolute; left: -14px; bottom: 26px; background: var(--card-2); border: 1px solid var(--line);
+    border-radius: 14px; padding: 10px 14px; font-family: var(--mono); font-size: .74rem; box-shadow: 0 16px 30px -12px rgba(0,0,0,.6);
+  }
+  .portrait .badge b { color: var(--green); }
+  .facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 26px; }
+  .fact { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: rgba(21,32,54,.5); }
+  .fact small { display: block; font-family: var(--mono); font-size: .68rem; color: var(--dim); text-transform: uppercase; letter-spacing: .06em; }
+  .fact span { font-size: .92rem; }
+
+  /* cta */
+  .cta-box {
+    text-align: center; border: 1px solid var(--line); border-radius: 28px; padding: 64px 24px;
+    background: radial-gradient(600px 260px at 50% 0%, rgba(225,29,46,.18), transparent 70%), linear-gradient(180deg, var(--card-2), var(--card));
+  }
+  .cta-box p { max-width: 560px; margin: 0 auto 30px; font-size: 1.08rem; }
+  .cta-box .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  footer { padding: 36px 0 48px; color: var(--dim); font-size: .85rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 28px; }
+  footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
+  footer a:hover { color: var(--text); }
+
+  /* scroll reveal */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; }
+
+  @media (max-width: 960px) {
+    .hero .wrap, .report-wrap, .about { grid-template-columns: 1fr; gap: 48px; }
+    .results { grid-template-columns: repeat(2, 1fr); }
+    .funnel { grid-template-columns: 1fr; max-width: 420px; }
+    .link { height: 40px; width: 2px; margin: 6px auto;
+      background: repeating-linear-gradient(180deg, rgba(225,29,46,.55) 0 6px, transparent 6px 12px); background-size: 2px 24px; animation: dashv 1s linear infinite; }
+    @keyframes dashv { to { background-position: 0 24px; } }
+    .link::after { left: 50%; top: 0; animation-name: travelv; }
+    @keyframes travelv { 0% { top: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+    .portrait { margin: 0 auto; width: calc(100% - 24px); }
+  }
+  @media (max-width: 720px) {
+    section { padding: 72px 0; }
+    .nav-links a:not(.btn) { display: none; }
+    .services, .results { grid-template-columns: 1fr; }
+    .hero { padding: 40px 0 72px; }
+    .hero-stats { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .hero-stat { padding: 12px; }
+    .hero-stat b { font-size: 1.15rem; }
+    .facts { grid-template-columns: 1fr; }
+    .kpis { grid-template-columns: 1fr 1fr 1fr; }
+    .kpi b { font-size: 1rem; }
+    footer a { margin: 0 18px 0 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
   }
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <header class="top">
-    <div class="logo">Barão<span>.</span>Growth</div>
-    <a class="btn btn-wa btn-sm" href="https://wa.me/5511968741917" target="_blank" rel="noopener">Talk on WhatsApp</a>
-  </header>
-</div>
+<nav class="top" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/logo.png" alt="">Barão <span>Growth</span></a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#results">Results</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a class="btn btn-primary" href="https://wa.me/5511968741917" target="_blank" rel="noopener">Free X-Ray</a>
+    </div>
+  </div>
+</nav>
 
-<main>
+<main id="top">
+  <!-- HERO -->
   <section class="hero">
     <div class="wrap">
-      <div class="eyebrow">Meta Ads for local businesses</div>
-      <h1>Turn Instagram attention into <span class="highlight">real sales</span> on WhatsApp.</h1>
-      <p class="lead">Pretty ads that only get likes don't pay the bills. I build simple sales systems for local businesses: the ad brings the customer, the WhatsApp conversation closes the order, and automation handles the repetitive work.</p>
-      <div class="actions">
-        <a class="btn btn-wa" href="https://wa.me/5511968741917" target="_blank" rel="noopener">Get a free diagnosis</a>
-        <a class="btn btn-ghost" href="#results">See results</a>
+      <div>
+        <div class="terminal"><span id="typed"></span><span class="cursor"></span></div>
+        <h1 class="reveal">Ads that turn into <span class="blue">sales on WhatsApp.</span></h1>
+        <p class="lead reveal d1">Pretty ads that only get likes don't pay the bills. I build sales systems for local businesses: the ad brings the customer, the conversation closes the order, and automation handles the repetitive work.</p>
+        <div class="actions reveal d2">
+          <a class="btn btn-primary" href="https://wa.me/5511968741917" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1-1.6-.5-3.5-1.7-5-3.6-1-1.3-1.5-2.6-1.6-3.3-.1-.8.4-1.6 1-2 .2-.2.5-.2.7-.2h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.2.2-.3.4-.1.7.5.8 1.1 1.5 1.8 2.1.6.5 1.3.9 2 1.2.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l1.8.9c.3.1.5.2.5.4.1.2.1.8-.4 1.3Z"/></svg>
+            Get your free X-Ray
+          </a>
+          <a class="btn btn-ghost" href="#results">See the numbers</a>
+        </div>
+        <div class="hero-stats reveal d3">
+          <div class="hero-stat"><b>1,876</b><small>sales as affiliate</small></div>
+          <div class="hero-stat"><b>R$6.65</b><small>cost per sale</small></div>
+          <div class="hero-stat"><b>10 days</b><small>R$21k motorcycle</small></div>
+        </div>
+      </div>
+
+      <div class="phone reveal d2" aria-hidden="true">
+        <div class="screen">
+          <div class="chat-head">
+            <img src="assets/logo.png" alt="">
+            <div><b>Your Business</b><small id="status">online</small></div>
+          </div>
+          <div class="chat-body" id="chat">
+            <div class="ad-card msg" data-step="0">
+              <div class="ad-img">TUESDAY DEAL 🍕</div>
+              <div class="ad-txt"><b>Instagram ad · Sponsored</b>Tap to message us on WhatsApp</div>
+            </div>
+            <div class="msg out" data-step="1">Hi! I saw your ad. Is the deal still on? <time>19:02</time></div>
+            <div class="typing" data-step="2"><i></i><i></i><i></i></div>
+            <div class="msg in" data-step="3">Yes! 😄 Here are today's options and the delivery price 👇 <time>19:02</time></div>
+            <div class="msg out" data-step="4">Perfect, I'll take the large pepperoni! <time>19:03</time></div>
+            <div class="closed" data-step="5">✓ order closed · from the ad</div>
+          </div>
+          <div class="chat-input">Message</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section>
+  <!-- HOW IT WORKS -->
+  <section id="how">
     <div class="wrap">
-      <div class="eyebrow">How it works</div>
-      <h2>One simple path from ad to sale</h2>
-      <p>No complicated funnels. Local customers want to ask a question and buy, so every campaign is built around a direct conversation.</p>
-      <div class="flow">
-        <div class="step">
-          <div class="num">1</div>
-          <h3>The ad stops the scroll</h3>
-          <p>A strong hook in the first seconds, the real product, and a clear offer, written and tested on Instagram and Facebook.</p>
+      <div class="section-head reveal">
+        <span class="tag">// how it works</span>
+        <h2>From the ad to the order, <span class="red">in one flow.</span></h2>
+        <p>No complicated funnels. Local customers want to ask a question and buy, so every campaign is built around a direct conversation.</p>
+      </div>
+      <div class="funnel">
+        <div class="node reveal">
+          <div class="step">01 · TRAFFIC</div>
+          <h3>Meta Ads</h3>
+          <div class="meta">instagram · facebook</div>
+          <p>A strong hook, the real product and a clear offer, with several creative angles tested.</p>
         </div>
-        <div class="step">
-          <div class="num">2</div>
-          <h3>The click opens WhatsApp</h3>
-          <p>The customer lands straight in a conversation, with a ready-made message and a catalog to browse.</p>
+        <div class="link"></div>
+        <div class="node reveal d1">
+          <div class="step">02 · CONVERSATION</div>
+          <h3>WhatsApp</h3>
+          <div class="meta">active chat</div>
+          <p>The click opens a conversation with a ready-made message and a catalog to browse.</p>
         </div>
-        <div class="step">
-          <div class="num">3</div>
-          <h3>The conversation becomes a sale</h3>
-          <p>Message scripts help the team close faster, and every sale is tracked back to the ad that brought it.</p>
+        <div class="link"></div>
+        <div class="node reveal d2">
+          <div class="step">03 · SYSTEM</div>
+          <h3>Automation</h3>
+          <div class="meta">crm · ai</div>
+          <p>Scripts, quick replies and follow-ups so no customer is left without an answer.</p>
+        </div>
+        <div class="link"></div>
+        <div class="node final reveal d3">
+          <div class="step">04 · RESULT</div>
+          <h3>Order</h3>
+          <div class="meta">tracked to the ad</div>
+          <p>Every sale is traced back to the ad that brought it, so we know what really works.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class="wrap">
-      <div class="eyebrow">What I do</div>
-      <h2>Hands-on, from the first ad to the weekly report</h2>
-      <div class="grid-2">
-        <div class="card">
-          <h3>Campaign management</h3>
-          <p>I plan, launch and optimize Meta Ads campaigns myself, testing several different creative angles to find what actually sells.</p>
-        </div>
-        <div class="card">
-          <h3>Ad copy and video scripts</h3>
-          <p>Hooks, ad copy and short video scripts that business owners can record on their phones, for both Reels and ads.</p>
-        </div>
-        <div class="card">
-          <h3>Honest weekly reports</h3>
-          <p>Every week: what we spent, how many conversations and sales came in, what it cost, and the next steps, in plain language.</p>
-        </div>
-        <div class="card">
-          <h3>Local Storefront Kit</h3>
-          <p>Getting the business ready to receive customers: Google Business Profile, WhatsApp Business with catalog, and a link page.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- RESULTS -->
   <section id="results">
     <div class="wrap">
-      <div class="eyebrow">Results</div>
-      <h2>Numbers, not promises</h2>
-      <p>Real campaigns, reported with the full numbers.</p>
-      <div class="grid-2">
-        <div class="card result">
-          <div class="big">10 days</div>
+      <div class="section-head reveal">
+        <span class="tag">// results</span>
+        <h2>Numbers, <span class="blue">not promises.</span></h2>
+        <p>Real campaigns, reported with the full numbers, good or bad.</p>
+      </div>
+      <div class="results">
+        <div class="result reveal">
+          <div class="num"><span class="count" data-to="10">0</span> days</div>
           <div class="label">Motorcycle dealership</div>
-          <p>An ADV 150 motorcycle worth R$21,000 sold after 10 days of ads, with less than R$600 spent on the whole campaign.</p>
+          <p>An ADV 150 worth R$21,000 sold after 10 days of ads, with less than R$600 spent on the whole campaign.</p>
         </div>
-        <div class="card result">
-          <div class="big">~2.2x</div>
+        <div class="result reveal d1">
+          <div class="num">~<span class="count" data-to="2.2" data-dec="1">0</span>x</div>
           <div class="label">Pizzeria</div>
           <p>First orders coming from ads, with weekly sales of about 2.2 times the amount invested.</p>
         </div>
-        <div class="card result">
-          <div class="big">1,876 sales</div>
-          <div class="label">Digital products (Hotmart affiliate)</div>
-          <p>In 3.5 months, R$12.5k in ads turned into R$26.3k in sales, at an average cost of R$6.65 per sale. The operation closed with a profit.</p>
+        <div class="result reveal d2">
+          <div class="num"><span class="count" data-to="1876">0</span></div>
+          <div class="label">Sales · Hotmart affiliate</div>
+          <p>In 3.5 months, R$12.5k in ads turned into R$26.3k in sales, at R$6.65 per sale. Closed with a profit.</p>
         </div>
-        <div class="card result">
-          <div class="big">5.5 ROAS</div>
-          <div class="label">My own e-commerce store</div>
-          <p>In the first 25 days, R$356 in Shopee ads turned into R$1,964 in sales and 55 orders.</p>
+        <div class="result reveal d3">
+          <div class="num"><span class="count" data-to="5.5" data-dec="1">0</span> ROAS</div>
+          <div class="label">My own Shopee store</div>
+          <p>In the first 25 days, R$356 in ads turned into R$1,964 in sales and 55 orders.</p>
         </div>
       </div>
-      <p class="note">Values in Brazilian reais (R$). ROAS = revenue divided by ad spend.</p>
+      <p class="note">Values in Brazilian reais (R$). ROAS = revenue ÷ ad spend.</p>
     </div>
   </section>
 
-  <section>
-    <div class="wrap about">
-      <div>
-        <div class="eyebrow">About</div>
-        <h2>Hi, I'm Douglas Barão</h2>
-        <p>I'm a growth strategist based in São Paulo, Brazil. I started selling digital products as an affiliate, then opened my own e-commerce store, and today I help local businesses like motorcycle shops, pizzerias and neighborhood stores grow with paid ads.</p>
-        <p>I come from Python programming, so I like numbers, tests, and automating anything repetitive. I also use AI tools every day to create and review ad variations faster, always with a human check before anything goes live.</p>
-      </div>
-      <ul class="facts">
-        <li><strong>Focus:</strong> Meta Ads, WhatsApp sales funnels, automation</li>
-        <li><strong>Clients:</strong> local businesses and e-commerce</li>
-        <li><strong>Education:</strong> Computer Systems Analysis, FIAP</li>
-        <li><strong>Based in:</strong> São Paulo, Brazil (GMT-3)</li>
-        <li><strong>Languages:</strong> Portuguese (native), English</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="cta">
+  <!-- SERVICES -->
+  <section id="services">
     <div class="wrap">
-      <h2>Have a local business?</h2>
-      <p>Send me a message and I'll take a look at how your Instagram can start bringing orders to your WhatsApp.</p>
-      <a class="btn btn-wa" href="https://wa.me/5511968741917" target="_blank" rel="noopener">Talk on WhatsApp</a>
+      <div class="section-head reveal">
+        <span class="tag">// services</span>
+        <h2>Hands-on, from the first ad <span class="red">to the weekly report.</span></h2>
+      </div>
+      <div class="services">
+        <div class="service featured reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+          <div class="snum">START HERE</div>
+          <h3>Free X-Ray</h3>
+          <p>Send me a message and I'll look at your Instagram, Google profile and WhatsApp to show where you're losing sales.</p>
+          <span class="pill">free</span>
+        </div>
+        <div class="service reveal d1">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h4l3-8 4 16 3-8h2"/></svg></div>
+          <div class="snum">SERVICE 01</div>
+          <h3>Setup: ads that turn into sales</h3>
+          <p>From the ad to the closed order: campaign structure, ad copy, video scripts and the WhatsApp flow, all set up and ready.</p>
+          <span class="pill">on request</span>
+        </div>
+        <div class="service reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+          <div class="snum">SERVICE 02</div>
+          <h3>Monthly ad management</h3>
+          <p>I run and optimize your Meta Ads every week, test new creatives and send a weekly report with numbers and next steps.</p>
+          <span class="pill">on request</span>
+        </div>
+        <div class="service reveal d1">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l1.5-5h15L21 9M3 9h18v11H3zM9 20v-6h6v6"/></svg></div>
+          <div class="snum">SERVICE 03</div>
+          <h3>Local Storefront Kit + review plaque</h3>
+          <p>Google Business Profile, WhatsApp Business with catalog, a link page, and a QR plaque that turns happy customers into Google reviews.</p>
+          <span class="pill">one-time</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEEKLY REPORT -->
+  <section>
+    <div class="wrap report-wrap">
+      <div class="reveal">
+        <span class="tag">// weekly report</span>
+        <h2>Every week, the numbers <span class="blue">in plain language.</span></h2>
+        <p>No vanity metrics. You know exactly what was spent, what came back and what we'll do next.</p>
+        <ul class="checks">
+          <li>How much was invested and where</li>
+          <li>Conversations started and sales closed</li>
+          <li>Cost per sale and return on ad spend</li>
+          <li>What worked, what didn't, and the next test</li>
+        </ul>
+      </div>
+      <div class="report reveal d2" aria-hidden="true">
+        <div class="report-top"><b>Weekly report</b><small>example layout</small></div>
+        <div class="bars" id="bars">
+          <div class="bar" data-h="34"><i></i></div>
+          <div class="bar" data-h="48"><i></i></div>
+          <div class="bar" data-h="44"><i></i></div>
+          <div class="bar" data-h="66"><i></i></div>
+          <div class="bar hot" data-h="92"><i></i></div>
+        </div>
+        <div class="bar-labels"><span>wk 1</span><span>wk 2</span><span>wk 3</span><span>wk 4</span><span>wk 5</span></div>
+        <div class="kpis">
+          <div class="kpi"><small>conversations</small><b>↑ trend</b></div>
+          <div class="kpi"><small>sales</small><b>tracked</b></div>
+          <div class="kpi"><small>cost / sale</small><b>R$ ✓</b></div>
+        </div>
+        <div class="report-foot">› illustrative chart, not client data</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about">
+      <div class="portrait reveal">
+        <img src="assets/douglas.jpg" alt="Douglas Barão" width="640" height="640" loading="lazy">
+        <div class="badge"><b>●</b> São Paulo · GMT-3</div>
+      </div>
+      <div class="reveal d1">
+        <span class="tag">// about</span>
+        <h2>Hi, I'm Douglas Barão.</h2>
+        <p>I'm a growth strategist from São Paulo, Brazil. I started selling digital products as an affiliate, then opened my own e-commerce store, and today I help local businesses like motorcycle shops, pizzerias and neighborhood stores grow with paid ads.</p>
+        <p>I come from Python programming, so I like numbers, testing and automating anything repetitive. I use AI tools every day to create and review ad variations faster, always with a human check before anything goes live.</p>
+        <div class="facts">
+          <div class="fact"><small>Focus</small><span>Meta Ads · WhatsApp funnels</span></div>
+          <div class="fact"><small>Also</small><span>Python automation · chatbots</span></div>
+          <div class="fact"><small>Education</small><span>Systems Analysis, FIAP</span></div>
+          <div class="fact"><small>Languages</small><span>Portuguese · English</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <span class="tag">// next step</span>
+        <h2>Is your Instagram bringing <span class="blue">orders</span>, or just likes?</h2>
+        <p>Send me a message and I'll do a free X-Ray of your business, showing where you're losing sales and what to fix first.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://wa.me/5511968741917" target="_blank" rel="noopener">Talk on WhatsApp</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/b4rao" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Barão Growth</span>
-    <span><a href="https://www.linkedin.com/in/b4rao" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/b4rao-dg" target="_blank" rel="noopener">GitHub</a></span>
+    <span>© 2026 Barão Growth · São Paulo, Brazil</span>
+    <span>
+      <a href="https://www.linkedin.com/in/b4rao" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/b4rao" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://github.com/b4rao-dg" target="_blank" rel="noopener">GitHub</a>
+    </span>
   </div>
 </footer>
 
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // nav border on scroll
+  var nav = document.getElementById('nav');
+  addEventListener('scroll', function () { nav.classList.toggle('scrolled', scrollY > 10); }, { passive: true });
+
+  // terminal typing
+  var text = '> growth_engine.run()', el = document.getElementById('typed');
+  if (reduce) { el.textContent = text; }
+  else { var i = 0; (function type() { el.textContent = text.slice(0, ++i); if (i < text.length) setTimeout(type, 70); })(); }
+
+  // count-up numbers
+  function countUp(node) {
+    var to = parseFloat(node.dataset.to), dec = +(node.dataset.dec || 0);
+    var fmt = function (v) { return v.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }); };
+    if (reduce) { node.textContent = fmt(to); return; }
+    var start = null, dur = 1600;
+    requestAnimationFrame(function step(t) {
+      if (!start) start = t;
+      var p = Math.min((t - start) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+      node.textContent = fmt(to * e);
+      if (p < 1) requestAnimationFrame(step);
+    });
+  }
+
+  // scroll reveal + triggers
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var t = en.target;
+      t.classList.add('in');
+      t.querySelectorAll('.count').forEach(countUp);
+      if (t.querySelector('#bars')) {
+        t.querySelectorAll('.bar').forEach(function (b, k) {
+          setTimeout(function () { b.querySelector('i').style.height = b.dataset.h + '%'; }, reduce ? 0 : k * 120);
+        });
+      }
+      io.unobserve(t);
+    });
+  }, { threshold: 0.18 });
+  document.querySelectorAll('.reveal').forEach(function (n) { io.observe(n); });
+
+  // WhatsApp chat loop
+  var steps = Array.prototype.slice.call(document.querySelectorAll('#chat [data-step]'));
+  var status = document.getElementById('status');
+  var delays = [600, 1400, 1300, 1700, 1500, 1400];
+  function reveal(s) {
+    s.style.display = s.classList.contains('typing') ? 'flex' : 'block';
+    requestAnimationFrame(function () { requestAnimationFrame(function () { s.classList.add('show'); }); });
+  }
+  function hide(s) { s.classList.remove('show'); s.style.display = 'none'; }
+  if (reduce) { steps.forEach(function (s) { if (!s.classList.contains('typing')) { s.style.display = 'block'; s.classList.add('show'); } }); return; }
+  var typing = document.querySelector('#chat .typing');
+  function run() {
+    steps.forEach(hide);
+    status.textContent = 'online';
+    var t = 0;
+    steps.forEach(function (s, k) {
+      t += delays[k];
+      setTimeout(function () {
+        if (s === typing) { status.textContent = 'typing…'; }
+        else if (typing.classList.contains('show')) { hide(typing); status.textContent = 'online'; }
+        reveal(s);
+      }, t);
+    });
+    setTimeout(run, t + 3800);
+  }
+  run();
+})();
+</script>
 </body>
 </html>
