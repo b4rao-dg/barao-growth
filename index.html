@@ -239,7 +239,7 @@
   /* about */
   .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: center; }
   .portrait { position: relative; max-width: 380px; }
-  .portrait img { width: 100%; display: block; border-radius: 24px; border: 1px solid var(--line); }
+  .portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; display: block; border-radius: 24px; border: 1px solid var(--line); }
   .portrait::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border-radius: 24px; border: 1px solid rgba(225,29,46,.45); z-index: -1; }
   .portrait .badge {
     position: absolute; left: -14px; bottom: 26px; background: var(--card-2); border: 1px solid var(--line);
@@ -520,7 +520,7 @@
   <section id="about">
     <div class="wrap about">
       <div class="portrait reveal">
-        <img src="assets/douglas.jpg" alt="Douglas Barão" width="640" height="640" loading="lazy">
+        <img src="assets/douglas.jpg" alt="Douglas Barão" width="720" height="900" loading="lazy">
         <div class="badge"><b>●</b> São Paulo · GMT-3</div>
       </div>
       <div class="reveal d1">
