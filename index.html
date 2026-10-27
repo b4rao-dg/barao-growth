@@ -297,6 +297,14 @@
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .reveal { opacity: 1; transform: none; }
   }
+
+  .lang {
+    font-family: var(--mono); font-size: .8rem; font-weight: 500; color: var(--text); cursor: pointer;
+    background: rgba(21,32,54,.6); border: 1px solid var(--line); border-radius: 10px; padding: 8px 11px;
+    transition: border-color .2s;
+  }
+  .lang:hover { border-color: var(--blue-2); }
+  .lang span { color: var(--dim); }
 </style>
 </head>
 <body>
@@ -305,11 +313,12 @@
   <div class="wrap">
     <a class="brand" href="#top"><img src="assets/logo.png" alt="">Barão <span>Growth</span></a>
     <div class="nav-links">
-      <a href="#how">How it works</a>
-      <a href="#results">Results</a>
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a class="btn btn-primary" href="https://wa.me/5511968741917" target="_blank" rel="noopener">Free X-Ray</a>
+      <a href="#how" data-i18n="k0">How it works</a>
+      <a href="#results" data-i18n="k1">Results</a>
+      <a href="#services" data-i18n="k2">Services</a>
+      <a href="#about" data-i18n="k3">About</a>
+      <button class="lang" id="lang" type="button" aria-label="Mudar idioma / Change language">PT</button>
+      <a class="btn btn-primary" href="https://wa.me/5511968741917" target="_blank" rel="noopener" data-i18n="k4">Free X-Ray</a>
     </div>
   </div>
 </nav>
@@ -320,19 +329,19 @@
     <div class="wrap">
       <div>
         <div class="terminal"><span id="typed"></span><span class="cursor"></span></div>
-        <h1 class="reveal">Ads that turn into <span class="blue">sales on WhatsApp.</span></h1>
-        <p class="lead reveal d1">Pretty ads that only get likes don't pay the bills. I build sales systems for local businesses: the ad brings the customer, the conversation closes the order, and automation handles the repetitive work.</p>
+        <h1 class="reveal" data-i18n="k5">Ads that turn into <span class="blue">sales on WhatsApp.</span></h1>
+        <p class="lead reveal d1" data-i18n="k6">Pretty ads that only get likes don't pay the bills. I build sales systems for local businesses: the ad brings the customer, the conversation closes the order, and automation handles the repetitive work.</p>
         <div class="actions reveal d2">
           <a class="btn btn-primary" href="https://wa.me/5511968741917" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1-1.6-.5-3.5-1.7-5-3.6-1-1.3-1.5-2.6-1.6-3.3-.1-.8.4-1.6 1-2 .2-.2.5-.2.7-.2h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.2.2-.3.4-.1.7.5.8 1.1 1.5 1.8 2.1.6.5 1.3.9 2 1.2.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l1.8.9c.3.1.5.2.5.4.1.2.1.8-.4 1.3Z"/></svg>
-            Get your free X-Ray
+            <span data-i18n="k7">Get your free X-Ray</span>
           </a>
-          <a class="btn btn-ghost" href="#results">See the numbers</a>
+          <a class="btn btn-ghost" href="#results" data-i18n="k8">See the numbers</a>
         </div>
         <div class="hero-stats reveal d3">
-          <div class="hero-stat"><b>1,876</b><small>sales as affiliate</small></div>
-          <div class="hero-stat"><b>R$6.65</b><small>cost per sale</small></div>
-          <div class="hero-stat"><b>10 days</b><small>R$21k motorcycle</small></div>
+          <div class="hero-stat"><b data-i18n="k9">1,876</b><small data-i18n="k10">sales as affiliate</small></div>
+          <div class="hero-stat"><b data-i18n="k11">R$6.65</b><small data-i18n="k12">cost per sale</small></div>
+          <div class="hero-stat"><b data-i18n="k13">10 days</b><small data-i18n="k14">R$21k motorcycle</small></div>
         </div>
       </div>
 
@@ -340,20 +349,20 @@
         <div class="screen">
           <div class="chat-head">
             <img src="assets/logo.png" alt="">
-            <div><b>Your Business</b><small id="status">online</small></div>
+            <div><b data-i18n="k15">Your Business</b><small id="status">online</small></div>
           </div>
           <div class="chat-body" id="chat">
             <div class="ad-card msg" data-step="0">
-              <div class="ad-img">TUESDAY DEAL 🍕</div>
-              <div class="ad-txt"><b>Instagram ad · Sponsored</b>Tap to message us on WhatsApp</div>
+              <div class="ad-img" data-i18n="k16">TUESDAY DEAL 🍕</div>
+              <div class="ad-txt" data-i18n="k17"><b>Instagram ad · Sponsored</b>Tap to message us on WhatsApp</div>
             </div>
-            <div class="msg out" data-step="1">Hi! I saw your ad. Is the deal still on? <time>19:02</time></div>
+            <div class="msg out" data-step="1" data-i18n="k18">Hi! I saw your ad. Is the deal still on? <time>19:02</time></div>
             <div class="typing" data-step="2"><i></i><i></i><i></i></div>
-            <div class="msg in" data-step="3">Yes! 😄 Here are today's options and the delivery price 👇 <time>19:02</time></div>
-            <div class="msg out" data-step="4">Perfect, I'll take the large pepperoni! <time>19:03</time></div>
-            <div class="closed" data-step="5">✓ order closed · from the ad</div>
+            <div class="msg in" data-step="3" data-i18n="k19">Yes! 😄 Here are today's options and the delivery price 👇 <time>19:02</time></div>
+            <div class="msg out" data-step="4" data-i18n="k20">Perfect, I'll take the large pepperoni! <time>19:03</time></div>
+            <div class="closed" data-step="5" data-i18n="k21">✓ order closed · from the ad</div>
           </div>
-          <div class="chat-input">Message</div>
+          <div class="chat-input" data-i18n="k22">Message</div>
         </div>
       </div>
     </div>
@@ -363,37 +372,37 @@
   <section id="how">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="tag">// how it works</span>
-        <h2>From the ad to the order, <span class="red">in one flow.</span></h2>
-        <p>No complicated funnels. Local customers want to ask a question and buy, so every campaign is built around a direct conversation.</p>
+        <span class="tag" data-i18n="k23">// how it works</span>
+        <h2 data-i18n="k24">From the ad to the order, <span class="red">in one flow.</span></h2>
+        <p data-i18n="k25">No complicated funnels. Local customers want to ask a question and buy, so every campaign is built around a direct conversation.</p>
       </div>
       <div class="funnel">
         <div class="node reveal">
-          <div class="step">01 · TRAFFIC</div>
+          <div class="step" data-i18n="k26">01 · TRAFFIC</div>
           <h3>Meta Ads</h3>
           <div class="meta">instagram · facebook</div>
-          <p>A strong hook, the real product and a clear offer, with several creative angles tested.</p>
+          <p data-i18n="k27">A strong hook, the real product and a clear offer, with several creative angles tested.</p>
         </div>
         <div class="link"></div>
         <div class="node reveal d1">
-          <div class="step">02 · CONVERSATION</div>
+          <div class="step" data-i18n="k28">02 · CONVERSATION</div>
           <h3>WhatsApp</h3>
-          <div class="meta">active chat</div>
-          <p>The click opens a conversation with a ready-made message and a catalog to browse.</p>
+          <div class="meta" data-i18n="k29">active chat</div>
+          <p data-i18n="k30">The click opens a conversation with a ready-made message and a catalog to browse.</p>
         </div>
         <div class="link"></div>
         <div class="node reveal d2">
-          <div class="step">03 · SYSTEM</div>
-          <h3>Automation</h3>
+          <div class="step" data-i18n="k31">03 · SYSTEM</div>
+          <h3 data-i18n="k32">Automation</h3>
           <div class="meta">crm · ai</div>
-          <p>Scripts, quick replies and follow-ups so no customer is left without an answer.</p>
+          <p data-i18n="k33">Scripts, quick replies and follow-ups so no customer is left without an answer.</p>
         </div>
         <div class="link"></div>
         <div class="node final reveal d3">
-          <div class="step">04 · RESULT</div>
-          <h3>Order</h3>
-          <div class="meta">tracked to the ad</div>
-          <p>Every sale is traced back to the ad that brought it, so we know what really works.</p>
+          <div class="step" data-i18n="k34">04 · RESULT</div>
+          <h3 data-i18n="k35">Order</h3>
+          <div class="meta" data-i18n="k36">tracked to the ad</div>
+          <p data-i18n="k37">Every sale is traced back to the ad that brought it, so we know what really works.</p>
         </div>
       </div>
     </div>
@@ -403,33 +412,33 @@
   <section id="results">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="tag">// results</span>
-        <h2>Numbers, <span class="blue">not promises.</span></h2>
-        <p>Real campaigns, reported with the full numbers, good or bad.</p>
+        <span class="tag" data-i18n="k38">// results</span>
+        <h2 data-i18n="k39">Numbers, <span class="blue">not promises.</span></h2>
+        <p data-i18n="k40">Real campaigns, reported with the full numbers, good or bad.</p>
       </div>
       <div class="results">
         <div class="result reveal">
-          <div class="num"><span class="count" data-to="10">0</span> days</div>
-          <div class="label">Motorcycle dealership</div>
-          <p>An ADV 150 worth R$21,000 sold after 10 days of ads, with less than R$600 spent on the whole campaign.</p>
+          <div class="num"><span class="count" data-to="10">0</span> <span data-i18n="k41">days</span></div>
+          <div class="label" data-i18n="k42">Motorcycle dealership</div>
+          <p data-i18n="k43">An ADV 150 worth R$21,000 sold after 10 days of ads, with less than R$600 spent on the whole campaign.</p>
         </div>
         <div class="result reveal d1">
           <div class="num">~<span class="count" data-to="2.2" data-dec="1">0</span>x</div>
-          <div class="label">Pizzeria</div>
-          <p>First orders coming from ads, with weekly sales of about 2.2 times the amount invested.</p>
+          <div class="label" data-i18n="k44">Pizzeria</div>
+          <p data-i18n="k45">First orders coming from ads, with weekly sales of about 2.2 times the amount invested.</p>
         </div>
         <div class="result reveal d2">
           <div class="num"><span class="count" data-to="1876">0</span></div>
-          <div class="label">Sales · Hotmart affiliate</div>
-          <p>In 3.5 months, R$12.5k in ads turned into R$26.3k in sales, at R$6.65 per sale. Closed with a profit.</p>
+          <div class="label" data-i18n="k46">Sales · Hotmart affiliate</div>
+          <p data-i18n="k47">In 3.5 months, R$12.5k in ads turned into R$26.3k in sales, at R$6.65 per sale. Closed with a profit.</p>
         </div>
         <div class="result reveal d3">
           <div class="num"><span class="count" data-to="5.5" data-dec="1">0</span> ROAS</div>
-          <div class="label">My own Shopee store</div>
-          <p>In the first 25 days, R$356 in ads turned into R$1,964 in sales and 55 orders.</p>
+          <div class="label" data-i18n="k48">My own Shopee store</div>
+          <p data-i18n="k49">In the first 25 days, R$356 in ads turned into R$1,964 in sales and 55 orders.</p>
         </div>
       </div>
-      <p class="note">Values in Brazilian reais (R$). ROAS = revenue ÷ ad spend.</p>
+      <p class="note" data-i18n="k50">Values in Brazilian reais (R$). ROAS = revenue ÷ ad spend.</p>
     </div>
   </section>
 
@@ -437,37 +446,37 @@
   <section id="services">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="tag">// services</span>
-        <h2>Hands-on, from the first ad <span class="red">to the weekly report.</span></h2>
+        <span class="tag" data-i18n="k51">// services</span>
+        <h2 data-i18n="k52">Hands-on, from the first ad <span class="red">to the weekly report.</span></h2>
       </div>
       <div class="services">
         <div class="service featured reveal">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
-          <div class="snum">START HERE</div>
-          <h3>Free X-Ray</h3>
-          <p>Send me a message and I'll look at your Instagram, Google profile and WhatsApp to show where you're losing sales.</p>
-          <span class="pill">free</span>
+          <div class="snum" data-i18n="k53">START HERE</div>
+          <h3 data-i18n="k4">Free X-Ray</h3>
+          <p data-i18n="k54">Send me a message and I'll look at your Instagram, Google profile and WhatsApp to show where you're losing sales.</p>
+          <span class="pill" data-i18n="k55">free</span>
         </div>
         <div class="service reveal d1">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h4l3-8 4 16 3-8h2"/></svg></div>
-          <div class="snum">SERVICE 01</div>
-          <h3>Setup: ads that turn into sales</h3>
-          <p>From the ad to the closed order: campaign structure, ad copy, video scripts and the WhatsApp flow, all set up and ready.</p>
-          <span class="pill">on request</span>
+          <div class="snum" data-i18n="k56">SERVICE 01</div>
+          <h3 data-i18n="k57">Setup: ads that turn into sales</h3>
+          <p data-i18n="k58">From the ad to the closed order: campaign structure, ad copy, video scripts and the WhatsApp flow, all set up and ready.</p>
+          <span class="pill" data-i18n="k59">on request</span>
         </div>
         <div class="service reveal">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
-          <div class="snum">SERVICE 02</div>
-          <h3>Monthly ad management</h3>
-          <p>I run and optimize your Meta Ads every week, test new creatives and send a weekly report with numbers and next steps.</p>
-          <span class="pill">on request</span>
+          <div class="snum" data-i18n="k60">SERVICE 02</div>
+          <h3 data-i18n="k61">Monthly ad management</h3>
+          <p data-i18n="k62">I run and optimize your Meta Ads every week, test new creatives and send a weekly report with numbers and next steps.</p>
+          <span class="pill" data-i18n="k59">on request</span>
         </div>
         <div class="service reveal d1">
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l1.5-5h15L21 9M3 9h18v11H3zM9 20v-6h6v6"/></svg></div>
-          <div class="snum">SERVICE 03</div>
-          <h3>Local Storefront Kit + review plaque</h3>
-          <p>Google Business Profile, WhatsApp Business with catalog, a link page, and a QR plaque that turns happy customers into Google reviews.</p>
-          <span class="pill">one-time</span>
+          <div class="snum" data-i18n="k63">SERVICE 03</div>
+          <h3 data-i18n="k64">Local Storefront Kit + review plaque</h3>
+          <p data-i18n="k65">Google Business Profile, WhatsApp Business with catalog, a link page, and a QR plaque that turns happy customers into Google reviews.</p>
+          <span class="pill" data-i18n="k66">one-time</span>
         </div>
       </div>
     </div>
@@ -477,18 +486,18 @@
   <section>
     <div class="wrap report-wrap">
       <div class="reveal">
-        <span class="tag">// weekly report</span>
-        <h2>Every week, the numbers <span class="blue">in plain language.</span></h2>
-        <p>No vanity metrics. You know exactly what was spent, what came back and what we'll do next.</p>
+        <span class="tag" data-i18n="k67">// weekly report</span>
+        <h2 data-i18n="k68">Every week, the numbers <span class="blue">in plain language.</span></h2>
+        <p data-i18n="k69">No vanity metrics. You know exactly what was spent, what came back and what we'll do next.</p>
         <ul class="checks">
-          <li>How much was invested and where</li>
-          <li>Conversations started and sales closed</li>
-          <li>Cost per sale and return on ad spend</li>
-          <li>What worked, what didn't, and the next test</li>
+          <li data-i18n="k70">How much was invested and where</li>
+          <li data-i18n="k71">Conversations started and sales closed</li>
+          <li data-i18n="k72">Cost per sale and return on ad spend</li>
+          <li data-i18n="k73">What worked, what didn't, and the next test</li>
         </ul>
       </div>
       <div class="report reveal d2" aria-hidden="true">
-        <div class="report-top"><b>Weekly report</b><small>example layout</small></div>
+        <div class="report-top"><b data-i18n="k74">Weekly report</b><small data-i18n="k75">example layout</small></div>
         <div class="bars" id="bars">
           <div class="bar" data-h="34"><i></i></div>
           <div class="bar" data-h="48"><i></i></div>
@@ -496,13 +505,13 @@
           <div class="bar" data-h="66"><i></i></div>
           <div class="bar hot" data-h="92"><i></i></div>
         </div>
-        <div class="bar-labels"><span>wk 1</span><span>wk 2</span><span>wk 3</span><span>wk 4</span><span>wk 5</span></div>
+        <div class="bar-labels"><span data-i18n="k76">wk 1</span><span data-i18n="k77">wk 2</span><span data-i18n="k78">wk 3</span><span data-i18n="k79">wk 4</span><span data-i18n="k80">wk 5</span></div>
         <div class="kpis">
-          <div class="kpi"><small>conversations</small><b>↑ trend</b></div>
-          <div class="kpi"><small>sales</small><b>tracked</b></div>
-          <div class="kpi"><small>cost / sale</small><b>R$ ✓</b></div>
+          <div class="kpi"><small data-i18n="k81">conversations</small><b data-i18n="k82">↑ trend</b></div>
+          <div class="kpi"><small data-i18n="k83">sales</small><b data-i18n="k84">tracked</b></div>
+          <div class="kpi"><small data-i18n="k85">cost / sale</small><b>R$ ✓</b></div>
         </div>
-        <div class="report-foot">› illustrative chart, not client data</div>
+        <div class="report-foot" data-i18n="k86">› illustrative chart, not client data</div>
       </div>
     </div>
   </section>
@@ -515,15 +524,15 @@
         <div class="badge"><b>●</b> São Paulo · GMT-3</div>
       </div>
       <div class="reveal d1">
-        <span class="tag">// about</span>
-        <h2>Hi, I'm Douglas Barão.</h2>
-        <p>I'm a growth strategist from São Paulo, Brazil. I started selling digital products as an affiliate, then opened my own e-commerce store, and today I help local businesses like motorcycle shops, pizzerias and neighborhood stores grow with paid ads.</p>
-        <p>I come from Python programming, so I like numbers, testing and automating anything repetitive. I use AI tools every day to create and review ad variations faster, always with a human check before anything goes live.</p>
+        <span class="tag" data-i18n="k87">// about</span>
+        <h2 data-i18n="k88">Hi, I'm Douglas Barão.</h2>
+        <p data-i18n="k89">I'm a growth strategist from São Paulo, Brazil. I started selling digital products as an affiliate, then opened my own e-commerce store, and today I help local businesses like motorcycle shops, pizzerias and neighborhood stores grow with paid ads.</p>
+        <p data-i18n="k90">I come from Python programming, so I like numbers, testing and automating anything repetitive. I use AI tools every day to create and review ad variations faster, always with a human check before anything goes live.</p>
         <div class="facts">
-          <div class="fact"><small>Focus</small><span>Meta Ads · WhatsApp funnels</span></div>
-          <div class="fact"><small>Also</small><span>Python automation · chatbots</span></div>
-          <div class="fact"><small>Education</small><span>Systems Analysis, FIAP</span></div>
-          <div class="fact"><small>Languages</small><span>Portuguese · English</span></div>
+          <div class="fact"><small data-i18n="k91">Focus</small><span data-i18n="k92">Meta Ads · WhatsApp funnels</span></div>
+          <div class="fact"><small data-i18n="k93">Also</small><span data-i18n="k94">Python automation · chatbots</span></div>
+          <div class="fact"><small data-i18n="k95">Education</small><span data-i18n="k96">Systems Analysis, FIAP</span></div>
+          <div class="fact"><small data-i18n="k97">Languages</small><span data-i18n="k98">Portuguese · English</span></div>
         </div>
       </div>
     </div>
@@ -533,11 +542,11 @@
   <section>
     <div class="wrap">
       <div class="cta-box reveal">
-        <span class="tag">// next step</span>
-        <h2>Is your Instagram bringing <span class="blue">orders</span>, or just likes?</h2>
-        <p>Send me a message and I'll do a free X-Ray of your business, showing where you're losing sales and what to fix first.</p>
+        <span class="tag" data-i18n="k99">// next step</span>
+        <h2 data-i18n="k100">Is your Instagram bringing <span class="blue">orders</span>, or just likes?</h2>
+        <p data-i18n="k101">Send me a message and I'll do a free X-Ray of your business, showing where you're losing sales and what to fix first.</p>
         <div class="actions">
-          <a class="btn btn-primary" href="https://wa.me/5511968741917" target="_blank" rel="noopener">Talk on WhatsApp</a>
+          <a class="btn btn-primary" href="https://wa.me/5511968741917" target="_blank" rel="noopener" data-i18n="k102">Talk on WhatsApp</a>
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/b4rao" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
@@ -547,7 +556,7 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Barão Growth · São Paulo, Brazil</span>
+    <span data-i18n="k103">© 2026 Barão Growth · São Paulo, Brazil</span>
     <span>
       <a href="https://www.linkedin.com/in/b4rao" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://www.instagram.com/b4rao" target="_blank" rel="noopener">Instagram</a>
@@ -557,6 +566,153 @@
 </footer>
 
 <script>
+// ---- language (EN / PT) ----
+(function () {
+  var PT = {
+"k0": "Como funciona",
+"k1": "Resultados",
+"k2": "Serviços",
+"k3": "Sobre",
+"k4": "Raio-X grátis",
+"k5": "Anúncio que vira <span class=\"blue\">venda no WhatsApp.</span>",
+"k6": "Anúncio bonito que só dá curtida não paga as contas. Eu monto o sistema de vendas do seu negócio: o anúncio traz o cliente, a conversa fecha o pedido e a automação cuida do repetitivo.",
+"k7": "Quero meu Raio-X grátis",
+"k8": "Ver os números",
+"k9": "1.876",
+"k10": "vendas como afiliado",
+"k11": "R$ 6,65",
+"k12": "custo por venda",
+"k13": "10 dias",
+"k14": "moto de R$ 21 mil",
+"k15": "Seu Negócio",
+"k16": "PROMO DE TERÇA 🍕",
+"k17": "<b>Anúncio no Instagram · Patrocinado</b>Toque para chamar no WhatsApp",
+"k18": "Oi! Vi o anúncio, a promoção ainda tá valendo? <time>19:02</time>",
+"k19": "Tá sim! 😄 Já te mando as opções de hoje e o valor da entrega 👇 <time>19:02</time>",
+"k20": "Fechou, vou querer a grande de calabresa! <time>19:03</time>",
+"k21": "✓ pedido fechado · veio do anúncio",
+"k22": "Mensagem",
+"k23": "// como funciona",
+"k24": "Do anúncio ao pedido, <span class=\"red\">num fluxo só.</span>",
+"k25": "Nada de funil complicado. O cliente local quer tirar uma dúvida e comprar, então toda campanha é feita para levar a uma conversa direta.",
+"k26": "01 · TRÁFEGO",
+"k27": "Gancho forte, produto de verdade e oferta clara, testando vários ângulos de criativo.",
+"k28": "02 · CONVERSA",
+"k29": "conversa ativa",
+"k30": "O clique abre a conversa com uma mensagem pronta e o catálogo para o cliente olhar.",
+"k31": "03 · SISTEMA",
+"k32": "Automação",
+"k33": "Roteiros, respostas rápidas e acompanhamento para nenhum cliente ficar sem resposta.",
+"k34": "04 · RESULTADO",
+"k35": "Pedido",
+"k36": "rastreado até o anúncio",
+"k37": "Cada venda é ligada ao anúncio que a trouxe, para saber o que realmente funciona.",
+"k38": "// resultados",
+"k39": "Números, <span class=\"blue\">não promessas.</span>",
+"k40": "Campanhas reais, com os números completos, sejam bons ou ruins.",
+"k41": "dias",
+"k42": "Loja de motos",
+"k43": "Uma ADV 150 de R$ 21 mil vendida em 10 dias de anúncio, com menos de R$ 600 investidos na campanha inteira.",
+"k44": "Pizzaria",
+"k45": "Primeiros pedidos vindos dos anúncios, vendendo cerca de 2,2 vezes o valor investido na semana.",
+"k46": "Vendas · afiliado Hotmart",
+"k47": "Em 3 meses e meio, R$ 12,5 mil em anúncios viraram R$ 26,3 mil em vendas, a R$ 6,65 por venda. Fechou no lucro.",
+"k48": "Minha loja na Shopee",
+"k49": "Nos primeiros 25 dias, R$ 356 em anúncios viraram R$ 1.964 em vendas e 55 pedidos.",
+"k50": "ROAS = faturamento ÷ investimento em anúncios.",
+"k51": "// serviços",
+"k52": "Mão na massa, do primeiro anúncio <span class=\"red\">ao relatório da semana.</span>",
+"k53": "COMECE AQUI",
+"k54": "Me chama e eu olho seu Instagram, seu perfil no Google e seu WhatsApp para mostrar onde você está perdendo venda.",
+"k55": "grátis",
+"k56": "SERVIÇO 01",
+"k57": "Implantação: anúncio que vira venda",
+"k58": "Do anúncio ao pedido fechado: estrutura de campanha, textos, roteiros de vídeo e o fluxo do WhatsApp, tudo montado e pronto.",
+"k59": "sob consulta",
+"k60": "SERVIÇO 02",
+"k61": "Gestão mensal de anúncios",
+"k62": "Eu cuido e otimizo seus anúncios na Meta toda semana, testo criativos novos e mando um relatório semanal com números e próximos passos.",
+"k63": "SERVIÇO 03",
+"k64": "Kit Vitrine + plaquinha de avaliação",
+"k65": "Perfil da Empresa no Google, WhatsApp Business com catálogo, página de links e uma plaquinha com QR code que transforma cliente satisfeito em avaliação no Google.",
+"k66": "pagamento único",
+"k67": "// relatório semanal",
+"k68": "Toda semana, os números <span class=\"blue\">em linguagem simples.</span>",
+"k69": "Nada de métrica de vaidade. Você sabe exatamente quanto foi investido, quanto voltou e qual é o próximo passo.",
+"k70": "Quanto foi investido e onde",
+"k71": "Conversas iniciadas e vendas fechadas",
+"k72": "Custo por venda e retorno sobre o investimento",
+"k73": "O que funcionou, o que não funcionou e o próximo teste",
+"k74": "Relatório semanal",
+"k75": "modelo de exemplo",
+"k76": "sem 1",
+"k77": "sem 2",
+"k78": "sem 3",
+"k79": "sem 4",
+"k80": "sem 5",
+"k81": "conversas",
+"k82": "↑ tendência",
+"k83": "vendas",
+"k84": "rastreadas",
+"k85": "custo / venda",
+"k86": "› gráfico ilustrativo, não são dados de cliente",
+"k87": "// sobre",
+"k88": "Oi, eu sou o Douglas Barão.",
+"k89": "Sou estrategista de growth em São Paulo. Comecei vendendo produtos digitais como afiliado, depois abri minha própria loja online, e hoje ajudo negócios locais, como lojas de motos, pizzarias e comércios de bairro, a vender mais com anúncios.",
+"k90": "Venho da programação em Python, por isso gosto de número, de teste e de automatizar tudo o que é repetitivo. Uso ferramentas de IA todo dia para criar e revisar variações de anúncio mais rápido, sempre com revisão humana antes de qualquer coisa ir ao ar.",
+"k91": "Foco",
+"k92": "Meta Ads · funil no WhatsApp",
+"k93": "Também",
+"k94": "automação em Python · chatbots",
+"k95": "Formação",
+"k96": "Análise de Sistemas, FIAP",
+"k97": "Idiomas",
+"k98": "português · inglês",
+"k99": "// próximo passo",
+"k100": "Seu Instagram está trazendo <span class=\"blue\">pedidos</span> ou só curtidas?",
+"k101": "Me chama e eu faço um Raio-X grátis do seu negócio, mostrando onde você está perdendo venda e o que arrumar primeiro.",
+"k102": "Chamar no WhatsApp",
+"k103": "© 2026 Barão Growth · São Paulo, Brasil"
+};
+  var META = {
+    en: { title: 'Barão Growth', desc: 'Ads that turn into sales on WhatsApp. Meta Ads, WhatsApp sales funnels and automation for local businesses.',
+          wa: 'Hi Douglas! I came from your website.', status: ['online', 'typing…'] },
+    pt: { title: 'Barão Growth', desc: 'Anúncio que vira venda no WhatsApp. Meta Ads, funil no WhatsApp e automação para negócios locais.',
+          wa: 'Oi Douglas! Vim pelo site e quero o Raio-X grátis.', status: ['online', 'digitando…'] }
+  };
+  var nodes = document.querySelectorAll('[data-i18n]');
+  nodes.forEach(function (n) { n.dataset.en = n.innerHTML; });
+  var btn = document.getElementById('lang');
+
+  function pick() {
+    try { var q = new URLSearchParams(location.search).get('lang'); if (q === 'pt' || q === 'en') return q; } catch (e) {}
+    try { var saved = localStorage.getItem('bg-lang'); if (saved === 'pt' || saved === 'en') return saved; } catch (e) {}
+    return (navigator.language || '').toLowerCase().indexOf('pt') === 0 ? 'pt' : 'en';
+  }
+  function apply(lang) {
+    window.BG_LANG = lang;
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    nodes.forEach(function (n) { n.innerHTML = lang === 'pt' ? PT[n.dataset.i18n] : n.dataset.en; });
+    document.title = META[lang].title;
+    var d = document.querySelector('meta[name="description"]'); if (d) d.setAttribute('content', META[lang].desc);
+    document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (a) {
+      a.href = 'https://wa.me/5511968741917?text=' + encodeURIComponent(META[lang].wa);
+    });
+    btn.innerHTML = lang === 'pt' ? 'EN' : 'PT';
+    btn.title = lang === 'pt' ? 'View in English' : 'Ver em português';
+    document.querySelectorAll('.count').forEach(function (c) {
+      if (c.dataset.done) c.textContent = (+c.dataset.to).toLocaleString(lang === 'pt' ? 'pt-BR' : 'en-US', { minimumFractionDigits: +(c.dataset.dec || 0), maximumFractionDigits: +(c.dataset.dec || 0) });
+    });
+  }
+  btn.addEventListener('click', function () {
+    var next = window.BG_LANG === 'pt' ? 'en' : 'pt';
+    try { localStorage.setItem('bg-lang', next); } catch (e) {}
+    apply(next);
+  });
+  window.BG_META = META;
+  apply(pick());
+})();
+
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -572,14 +728,14 @@
   // count-up numbers
   function countUp(node) {
     var to = parseFloat(node.dataset.to), dec = +(node.dataset.dec || 0);
-    var fmt = function (v) { return v.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }); };
-    if (reduce) { node.textContent = fmt(to); return; }
+    var fmt = function (v) { return v.toLocaleString(window.BG_LANG === 'pt' ? 'pt-BR' : 'en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }); };
+    if (reduce) { node.textContent = fmt(to); node.dataset.done = 1; return; }
     var start = null, dur = 1600;
     requestAnimationFrame(function step(t) {
       if (!start) start = t;
       var p = Math.min((t - start) / dur, 1), e = 1 - Math.pow(1 - p, 3);
       node.textContent = fmt(to * e);
-      if (p < 1) requestAnimationFrame(step);
+      if (p < 1) requestAnimationFrame(step); else node.dataset.done = 1;
     });
   }
 
@@ -613,13 +769,13 @@
   var typing = document.querySelector('#chat .typing');
   function run() {
     steps.forEach(hide);
-    status.textContent = 'online';
+    status.textContent = BG_META[BG_LANG].status[0];
     var t = 0;
     steps.forEach(function (s, k) {
       t += delays[k];
       setTimeout(function () {
-        if (s === typing) { status.textContent = 'typing…'; }
-        else if (typing.classList.contains('show')) { hide(typing); status.textContent = 'online'; }
+        if (s === typing) { status.textContent = BG_META[BG_LANG].status[1]; }
+        else if (typing.classList.contains('show')) { hide(typing); status.textContent = BG_META[BG_LANG].status[0]; }
         reveal(s);
       }, t);
     });
