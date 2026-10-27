@@ -784,5 +784,45 @@
   run();
 })();
 </script>
+
+<!-- Rastreamento: Meta Pixel + LinkedIn Insight Tag.
+     Fica desligado até os IDs serem preenchidos abaixo. -->
+<script>
+window.BG_TRACK = {
+  metaPixelId: "",          // ex.: "123456789012345" (Gerenciador de Eventos da Meta)
+  linkedinPartnerId: "",    // ex.: "1234567" (Campaign Manager > Insight Tag)
+  linkedinConversionId: ""  // ex.: "12345678" (conversão "Clique no WhatsApp")
+};
+(function (cfg) {
+  if (cfg.metaPixelId) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', cfg.metaPixelId);
+    fbq('track', 'PageView');
+  }
+  if (cfg.linkedinPartnerId) {
+    window._linkedin_partner_id = cfg.linkedinPartnerId;
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(cfg.linkedinPartnerId);
+    (function (l) {
+      if (!l) { window.lintrk = function (a, b) { window.lintrk.q.push([a, b]); }; window.lintrk.q = []; }
+      var s = document.getElementsByTagName('script')[0], b = document.createElement('script');
+      b.type = 'text/javascript'; b.async = true;
+      b.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
+      s.parentNode.insertBefore(b, s);
+    })(window.lintrk);
+  }
+  // Clique em qualquer botão de WhatsApp = contato (Meta) + conversão (LinkedIn)
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="https://wa.me/"]');
+    if (!a) return;
+    if (window.fbq) fbq('track', 'Contact');
+    if (window.lintrk && cfg.linkedinConversionId) lintrk('track', { conversion_id: cfg.linkedinConversionId });
+  });
+})(window.BG_TRACK);
+</script>
 </body>
 </html>
