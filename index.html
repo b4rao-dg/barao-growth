@@ -789,7 +789,7 @@
      Fica desligado até os IDs serem preenchidos abaixo. -->
 <script>
 window.BG_TRACK = {
-  metaPixelId: "",          // ex.: "123456789012345" (Gerenciador de Eventos da Meta)
+  metaPixelId: "1564610635685948", // Barão Growth – Site (Gerenciador de Eventos da Meta)
   linkedinPartnerId: "",    // ex.: "1234567" (Campaign Manager > Insight Tag)
   linkedinConversionId: ""  // ex.: "12345678" (conversão "Clique no WhatsApp")
 };
@@ -823,6 +823,44 @@ window.BG_TRACK = {
     if (window.lintrk && cfg.linkedinConversionId) lintrk('track', { conversion_id: cfg.linkedinConversionId });
   });
 })(window.BG_TRACK);
+</script>
+
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1564610635685948&ev=PageView&noscript=1"></noscript>
+
+<!-- Aviso de cookies (LGPD) -->
+<div id="cookie" role="region" aria-label="Cookies" hidden>
+  <p id="cookie-txt"></p>
+  <button type="button" id="cookie-ok"></button>
+</div>
+<style>
+  #cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:60;max-width:560px;margin:0 auto;
+    display:flex;gap:14px;align-items:center;background:#152036;border:1px solid #24324d;border-radius:14px;
+    padding:14px 16px;box-shadow:0 20px 40px -12px rgba(0,0,0,.7)}
+  #cookie[hidden]{display:none}
+  #cookie p{margin:0;font-size:.85rem;color:#c8d3e3;line-height:1.45}
+  #cookie button{flex:none;background:#e11d2e;color:#fff;border:0;border-radius:10px;padding:9px 16px;font:600 .85rem Inter,sans-serif;cursor:pointer}
+</style>
+<script>
+(function () {
+  var box = document.getElementById('cookie');
+  var T = {
+    pt: ['Usamos cookies para medir as visitas e melhorar nossos anúncios.', 'Entendi'],
+    en: ['We use cookies to measure visits and improve our ads.', 'Got it']
+  };
+  function render() {
+    var t = T[window.BG_LANG === 'pt' ? 'pt' : 'en'];
+    document.getElementById('cookie-txt').textContent = t[0];
+    document.getElementById('cookie-ok').textContent = t[1];
+  }
+  var ok = false;
+  try { ok = localStorage.getItem('bg-cookie') === '1'; } catch (e) {}
+  if (!ok) { render(); box.hidden = false; }
+  document.getElementById('lang').addEventListener('click', render);
+  document.getElementById('cookie-ok').addEventListener('click', function () {
+    box.hidden = true;
+    try { localStorage.setItem('bg-cookie', '1'); } catch (e) {}
+  });
+})();
 </script>
 </body>
 </html>
